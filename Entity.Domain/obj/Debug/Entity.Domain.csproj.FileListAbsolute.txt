@@ -1,0 +1,4 @@
+C:\Users\Ybadmus\Documents\yusuf_official\Entity\Entity.Domain\bin\Debug\Entity.Domain.dll
+C:\Users\Ybadmus\Documents\yusuf_official\Entity\Entity.Domain\bin\Debug\Entity.Domain.pdb
+C:\Users\Ybadmus\Documents\yusuf_official\Entity\Entity.Domain\obj\Debug\Entity.Domain.dll
+C:\Users\Ybadmus\Documents\yusuf_official\Entity\Entity.Domain\obj\Debug\Entity.Domain.pdb
