@@ -57,3 +57,6 @@ C:\Users\Ybadmus\Documents\yusuf_official\Entity\SomeUI\bin\Debug\System.Collect
 C:\Users\Ybadmus\Documents\yusuf_official\Entity\SomeUI\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 C:\Users\Ybadmus\Documents\yusuf_official\Entity\SomeUI\bin\Debug\System.Interactive.Async.xml
 C:\Users\Ybadmus\Documents\yusuf_official\Entity\SomeUI\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\Ybadmus\Documents\yusuf_official\Entity\SomeUI\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Ybadmus\Documents\yusuf_official\Entity\SomeUI\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Ybadmus\Documents\yusuf_official\Entity\SomeUI\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml

@@ -4,9 +4,56 @@
         <name>Microsoft.EntityFrameworkCore.SqlServer</name>
     </assembly>
     <members>
+        <member name="M:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+            <param name="context"> The context on which the operations will be invoked. </param>
+            <remarks>
+                The default retry limit is 5, which means that the total amount of time spent before failing is 26 seconds plus the random factor.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy.#ctor(Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyContext)">
+            <summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+            <param name="context"> The required dependencies. </param>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy.#ctor(Microsoft.EntityFrameworkCore.DbContext,System.Int32)">
+            <summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+            <param name="context"> The context on which the operations will be invoked. </param>
+            <param name="maxRetryCount"> The maximum number of retry attempts. </param>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy.#ctor(Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyContext,System.Int32)">
+            <summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+            <param name="context"> The required dependencies. </param>
+            <param name="maxRetryCount"> The maximum number of retry attempts. </param>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy.#ctor(Microsoft.EntityFrameworkCore.DbContext,System.Int32,System.TimeSpan,System.Collections.Generic.ICollection{System.Int32})">
+            <summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+            <param name="context"> The context on which the operations will be invoked. </param>
+            <param name="maxRetryCount"> The maximum number of retry attempts. </param>
+            <param name="maxRetryDelay"> The maximum delay in milliseconds between retries. </param>
+            <param name="errorNumbersToAdd"> Additional SQL error numbers that should be considered transient. </param>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy.#ctor(Microsoft.EntityFrameworkCore.Storage.ExecutionStrategyContext,System.Int32,System.TimeSpan,System.Collections.Generic.ICollection{System.Int32})">
+            <summary>
+                Creates a new instance of <see cref="T:Microsoft.EntityFrameworkCore.SqlServerRetryingExecutionStrategy" />.
+            </summary>
+            <param name="context"> The required dependencies. </param>
+            <param name="maxRetryCount"> The maximum number of retry attempts. </param>
+            <param name="maxRetryDelay"> The maximum delay in milliseconds between retries. </param>
+            <param name="errorNumbersToAdd"> Additional SQL error numbers that should be considered transient. </param>
+        </member>
         <member name="T:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions">
             <summary>
-                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder"/>.
+                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder" />.
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.String,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder})">
@@ -57,7 +104,7 @@
         </member>
         <member name="T:Microsoft.EntityFrameworkCore.SqlServerEntityTypeBuilderExtensions">
             <summary>
-                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder"/>.
+                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder" />.
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerEntityTypeBuilderExtensions.ForSqlServerToTable(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder,System.String)">
@@ -96,9 +143,26 @@
             <param name="schema"> The schema of the table. </param>
             <returns> The same builder instance so that multiple calls can be chained. </returns>
         </member>
+        <member name="M:Microsoft.EntityFrameworkCore.SqlServerEntityTypeBuilderExtensions.ForSqlServerIsMemoryOptimized(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder,System.Boolean)">
+            <summary>
+                Configures the table that the entity maps to when targeting SQL Server as memory-optimized.
+            </summary>
+            <param name="entityTypeBuilder"> The builder for the entity type being configured. </param>
+            <param name="memoryOptimized"> A value indicating whether the table is memory-optimized. </param>
+            <returns> The same builder instance so that multiple calls can be chained. </returns>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.SqlServerEntityTypeBuilderExtensions.ForSqlServerIsMemoryOptimized``1(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder{``0},System.Boolean)">
+            <summary>
+                Configures the table that the entity maps to when targeting SQL Server as memory-optimized.
+            </summary>
+            <typeparam name="TEntity"> The entity type being configured. </typeparam>
+            <param name="entityTypeBuilder"> The builder for the entity type being configured. </param>
+            <param name="memoryOptimized"> A value indicating whether the table is memory-optimized. </param>
+            <returns> The same builder instance so that multiple calls can be chained. </returns>
+        </member>
         <member name="T:Microsoft.EntityFrameworkCore.SqlServerIndexBuilderExtensions">
             <summary>
-                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.IndexBuilder"/>.
+                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.IndexBuilder" />.
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerIndexBuilderExtensions.ForSqlServerHasName(Microsoft.EntityFrameworkCore.Metadata.Builders.IndexBuilder,System.String)">
@@ -119,7 +183,7 @@
         </member>
         <member name="T:Microsoft.EntityFrameworkCore.SqlServerKeyBuilderExtensions">
             <summary>
-                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.KeyBuilder"/>.
+                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.KeyBuilder" />.
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerKeyBuilderExtensions.ForSqlServerHasName(Microsoft.EntityFrameworkCore.Metadata.Builders.KeyBuilder,System.String)">
@@ -229,7 +293,7 @@
         </member>
         <member name="T:Microsoft.EntityFrameworkCore.SqlServerModelBuilderExtensions">
             <summary>
-                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder"/>.
+                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.ModelBuilder" />.
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerModelBuilderExtensions.ForSqlServerHasSequence(Microsoft.EntityFrameworkCore.ModelBuilder,System.String,System.String)">
@@ -325,7 +389,7 @@
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerModelBuilderExtensions.ForSqlServerUseSequenceHiLo(Microsoft.EntityFrameworkCore.ModelBuilder,System.String,System.String)">
             <summary>
                 Configures the model to use a sequence-based hi-lo pattern to generate values for properties
-                marked as <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd"/>, when targeting SQL Server.
+                marked as <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd" />, when targeting SQL Server.
             </summary>
             <param name="modelBuilder"> The model builder. </param>
             <param name="name"> The name of the sequence. </param>
@@ -335,7 +399,7 @@
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerModelBuilderExtensions.ForSqlServerUseIdentityColumns(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
                 Configures the model to use the SQL Server IDENTITY feature to generate values for properties
-                marked as <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd"/>, when targeting SQL Server. This is the default
+                marked as <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd" />, when targeting SQL Server. This is the default
                 behavior when targeting SQL Server.
             </summary>
             <param name="modelBuilder"> The model builder. </param>
@@ -343,7 +407,7 @@
         </member>
         <member name="T:Microsoft.EntityFrameworkCore.SqlServerPropertyBuilderExtensions">
             <summary>
-                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder"/>.
+                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder" />.
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerPropertyBuilderExtensions.ForSqlServerHasColumnName(Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder,System.String)">
@@ -366,7 +430,7 @@
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerPropertyBuilderExtensions.ForSqlServerHasColumnType(Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder,System.String)">
             <summary>
                 Configures the data type of the column that the property maps to when targeting SQL Server.
-                This should be the complete type name, including precision, scale, length, etc. 
+                This should be the complete type name, including precision, scale, length, etc.
             </summary>
             <param name="propertyBuilder"> The builder for the property being configured. </param>
             <param name="typeName"> The name of the data type of the column. </param>
@@ -375,7 +439,7 @@
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerPropertyBuilderExtensions.ForSqlServerHasColumnType``1(Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder{``0},System.String)">
             <summary>
                 Configures the data type of the column that the property maps to when targeting SQL Server.
-                This should be the complete type name, including precision, scale, length, etc. 
+                This should be the complete type name, including precision, scale, length, etc.
             </summary>
             <typeparam name="TProperty"> The type of the property being configured. </typeparam>
             <param name="propertyBuilder"> The builder for the property being configured. </param>
@@ -435,8 +499,8 @@
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerPropertyBuilderExtensions.ForSqlServerUseSequenceHiLo(Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder,System.String,System.String)">
             <summary>
-                Configures the property to use a sequence-based hi-lo pattern to generate values for new entities, 
-                when targeting SQL Server. This method sets the property to be <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd"/>.
+                Configures the property to use a sequence-based hi-lo pattern to generate values for new entities,
+                when targeting SQL Server. This method sets the property to be <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd" />.
             </summary>
             <param name="propertyBuilder"> The builder for the property being configured. </param>
             <param name="name"> The name of the sequence. </param>
@@ -445,8 +509,8 @@
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerPropertyBuilderExtensions.ForSqlServerUseSequenceHiLo``1(Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder{``0},System.String,System.String)">
             <summary>
-                Configures the property to use a sequence-based hi-lo pattern to generate values for new entities, 
-                when targeting SQL Server. This method sets the property to be <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd"/>.
+                Configures the property to use a sequence-based hi-lo pattern to generate values for new entities,
+                when targeting SQL Server. This method sets the property to be <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd" />.
             </summary>
             <typeparam name="TProperty"> The type of the property being configured. </typeparam>
             <param name="propertyBuilder"> The builder for the property being configured. </param>
@@ -456,16 +520,16 @@
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerPropertyBuilderExtensions.UseSqlServerIdentityColumn(Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder)">
             <summary>
-                Configures the property to use the SQL Server IDENTITY feature to generate values for new entities, 
-                when targeting SQL Server. This method sets the property to be <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd"/>.
+                Configures the property to use the SQL Server IDENTITY feature to generate values for new entities,
+                when targeting SQL Server. This method sets the property to be <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd" />.
             </summary>
             <param name="propertyBuilder"> The builder for the property being configured. </param>
             <returns> The same builder instance so that multiple calls can be chained. </returns>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerPropertyBuilderExtensions.UseSqlServerIdentityColumn``1(Microsoft.EntityFrameworkCore.Metadata.Builders.PropertyBuilder{``0})">
             <summary>
-                Configures the property to use the SQL Server IDENTITY feature to generate values for new entities, 
-                when targeting SQL Server. This method sets the property to be <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd"/>.
+                Configures the property to use the SQL Server IDENTITY feature to generate values for new entities,
+                when targeting SQL Server. This method sets the property to be <see cref="F:Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd" />.
             </summary>
             <typeparam name="TProperty"> The type of the property being configured. </typeparam>
             <param name="propertyBuilder"> The builder for the property being configured. </param>
@@ -473,7 +537,7 @@
         </member>
         <member name="T:Microsoft.EntityFrameworkCore.SqlServerReferenceCollectionBuilderExtensions">
             <summary>
-                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.ReferenceCollectionBuilder"/>.
+                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.ReferenceCollectionBuilder" />.
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerReferenceCollectionBuilderExtensions.ForSqlServerHasConstraintName(Microsoft.EntityFrameworkCore.Metadata.Builders.ReferenceCollectionBuilder,System.String)">
@@ -496,7 +560,7 @@
         </member>
         <member name="T:Microsoft.EntityFrameworkCore.SqlServerReferenceReferenceBuilderExtensions">
             <summary>
-                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.ReferenceReferenceBuilder"/>.
+                SQL Server specific extension methods for <see cref="T:Microsoft.EntityFrameworkCore.Metadata.Builders.ReferenceReferenceBuilder" />.
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.SqlServerReferenceReferenceBuilderExtensions.ForSqlServerHasConstraintName(Microsoft.EntityFrameworkCore.Metadata.Builders.ReferenceReferenceBuilder,System.String)">
@@ -520,18 +584,19 @@
         <member name="T:Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder">
             <summary>
                 <para>
-                    Allows SQL Server specific configuration to be performed on <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptions"/>.
+                    Allows SQL Server specific configuration to be performed on <see cref="T:Microsoft.EntityFrameworkCore.DbContextOptions" />.
                 </para>
                 <para>
-                    Instances of this class are returned from a call to 
-                    <see cref="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.String,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder})"/>
+                    Instances of this class are returned from a call to
+                    <see
+                        cref="M:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.String,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder})" />
                     and it is not designed to be directly constructed in your application code.
                 </para>
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder.#ctor(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
             <summary>
-                Initializes a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder"/> class.
+                Initializes a new instance of the <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder" /> class.
             </summary>
             <param name="optionsBuilder"> The options builder. </param>
         </member>
@@ -545,6 +610,24 @@
             <summary>
                 Use a ROW_NUMBER() in queries instead of OFFSET/FETCH. This method is backwards-compatible to SQL Server 2005.
             </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder.EnableRetryOnFailure">
+            <summary>
+                Configures the context to use the default retrying <see cref="T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder.EnableRetryOnFailure(System.Int32)">
+            <summary>
+                Configures the context to use the default retrying <see cref="T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Infrastructure.SqlServerDbContextOptionsBuilder.EnableRetryOnFailure(System.Int32,System.TimeSpan,System.Collections.Generic.ICollection{System.Int32})">
+            <summary>
+                Configures the context to use the default retrying <see cref="T:Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy" />.
+            </summary>
+            <param name="maxRetryCount"> The maximum number of retry attempts. </param>
+            <param name="maxRetryDelay"> The maximum delay in milliseconds between retries. </param>
+            <param name="errorNumbersToAdd"> Additional SQL error numbers that should be considered transient. </param>
         </member>
         <member name="T:Microsoft.EntityFrameworkCore.Infrastructure.Internal.SqlServerModelSource">
             <summary>
@@ -583,6 +666,30 @@
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.Infrastructure.Internal.SqlServerOptionsExtension.ApplyServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerMemoryOptimizedTablesConvention">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerMemoryOptimizedTablesConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalEntityTypeBuilder,System.String,Microsoft.EntityFrameworkCore.Infrastructure.Annotation,Microsoft.EntityFrameworkCore.Infrastructure.Annotation)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerMemoryOptimizedTablesConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalKeyBuilder)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.SqlServerMemoryOptimizedTablesConvention.Apply(Microsoft.EntityFrameworkCore.Metadata.Internal.InternalIndexBuilder)">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
@@ -636,6 +743,36 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
+        <member name="F:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerAnnotationNames.MemoryOptimized">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerEntityTypeBuilderAnnotations.ToSchema(System.String)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerEntityTypeBuilderAnnotations.ToTable(System.String)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerEntityTypeBuilderAnnotations.ToTable(System.String,System.String)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerEntityTypeBuilderAnnotations.IsMemoryOptimized(System.Boolean)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
         <member name="T:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerFullAnnotationNames">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
@@ -678,6 +815,12 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
+        <member name="F:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerFullAnnotationNames.MemoryOptimized">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
         <member name="T:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerIndexBuilderAnnotations">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
@@ -696,7 +839,7 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerIndexBuilderAnnotations.IsClustered(System.Boolean)">
+        <member name="M:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerIndexBuilderAnnotations.IsClustered(System.Nullable{System.Boolean})">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
@@ -762,7 +905,7 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerKeyBuilderAnnotations.IsClustered(System.Boolean)">
+        <member name="M:Microsoft.EntityFrameworkCore.Metadata.Internal.SqlServerKeyBuilderAnnotations.IsClustered(System.Nullable{System.Boolean})">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
@@ -930,6 +1073,18 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Migrations.Internal.SqlServerMigrationsAnnotationProvider.For(Microsoft.EntityFrameworkCore.Metadata.IModel)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Migrations.Internal.SqlServerMigrationsAnnotationProvider.For(Microsoft.EntityFrameworkCore.Metadata.IEntityType)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
         <member name="M:Microsoft.EntityFrameworkCore.Migrations.Internal.SqlServerMigrationsAnnotationProvider.For(Microsoft.EntityFrameworkCore.Metadata.IKey)">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
@@ -942,7 +1097,49 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Migrations.Internal.SqlServerMigrationsAnnotationProvider.For(Microsoft.EntityFrameworkCore.Metadata.IForeignKey)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
         <member name="M:Microsoft.EntityFrameworkCore.Migrations.Internal.SqlServerMigrationsAnnotationProvider.For(Microsoft.EntityFrameworkCore.Metadata.IProperty)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Migrations.Internal.SqlServerMigrationsAnnotationProvider.ForRemove(Microsoft.EntityFrameworkCore.Metadata.IModel)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Migrations.Internal.SqlServerMigrationsAnnotationProvider.ForRemove(Microsoft.EntityFrameworkCore.Metadata.IEntityType)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Migrations.Internal.SqlServerMigrationsAnnotationProvider.ForRemove(Microsoft.EntityFrameworkCore.Metadata.IKey)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Migrations.Internal.SqlServerMigrationsAnnotationProvider.ForRemove(Microsoft.EntityFrameworkCore.Metadata.IIndex)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Migrations.Internal.SqlServerMigrationsAnnotationProvider.ForRemove(Microsoft.EntityFrameworkCore.Metadata.IForeignKey)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Migrations.Internal.SqlServerMigrationsAnnotationProvider.ForRemove(Microsoft.EntityFrameworkCore.Metadata.IProperty)">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
@@ -950,7 +1147,7 @@
         </member>
         <member name="T:Microsoft.EntityFrameworkCore.Internal.SqlServerStrings">
             <summary>
-            	This API supports the Entity Framework Core infrastructure and is not intended to be used 
+            	This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
@@ -967,6 +1164,26 @@
         <member name="M:Microsoft.EntityFrameworkCore.Internal.SqlServerStrings.SequenceBadType(System.Object,System.Object,System.Object)">
             <summary>
             SQL Server sequences cannot be used to generate values for the property '{property}' on entity type '{entityType}' because the property type is '{propertyType}'. Sequences can only be used with integer properties.
+            </summary>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.Internal.SqlServerStrings.IndexTableRequired">
+            <summary>
+            SQL Server requires the table name to be specified for rename index operations. Specify table name in the call to MigrationBuilder.RenameIndex.
+            </summary>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.Internal.SqlServerStrings.AlterMemoryOptimizedTable">
+            <summary>
+            To set memory-optimized on a table on or off the table needs to be dropped and recreated.
+            </summary>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.Internal.SqlServerStrings.AlterIdentityColumn">
+            <summary>
+            To change the IDENTITY property of a column, the column needs to be dropped and recreated.
+            </summary>
+        </member>
+        <member name="P:Microsoft.EntityFrameworkCore.Internal.SqlServerStrings.TransientExceptionDetected">
+            <summary>
+            An exception has been raised that is likely due to a transient failure. If you are connecting to a SQL Azure database consider using SqlAzureExecutionStrategy.
             </summary>
         </member>
         <member name="T:Microsoft.EntityFrameworkCore.Query.Expressions.Internal.DatePartExpression">
@@ -1095,6 +1312,12 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
+        <member name="T:Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal.SqlServerContainsOptimizedTranslator">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
         <member name="T:Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal.SqlServerConvertTranslator">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
@@ -1138,6 +1361,12 @@
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal.SqlServerDateTimeNowTranslator.Translate(System.Linq.Expressions.MemberExpression)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal.SqlServerEndsWithOptimizedTranslator">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
@@ -1222,6 +1451,12 @@
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal.SqlServerNewGuidTranslator.#ctor">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal.SqlServerStartsWithOptimizedTranslator">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
@@ -1455,12 +1690,6 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.Query.Sql.Internal.SqlServerQuerySqlGenerator.VisitProjection(System.Collections.Generic.IReadOnlyList{System.Linq.Expressions.Expression})">
-            <summary>
-                This API supports the Entity Framework Core infrastructure and is not intended to be used
-                directly from your code. This API may change or be removed in future releases.
-            </summary>
-        </member>
         <member name="M:Microsoft.EntityFrameworkCore.Query.Sql.Internal.SqlServerQuerySqlGenerator.VisitRowNumber(Microsoft.EntityFrameworkCore.Query.Expressions.Internal.RowNumberExpression)">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
@@ -1545,7 +1774,7 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.#ctor(Microsoft.EntityFrameworkCore.Storage.Internal.ISqlServerConnection,Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer,Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator,Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Storage.IRawSqlCommandBuilder)">
+        <member name="M:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseCreator.#ctor(Microsoft.EntityFrameworkCore.Storage.Internal.ISqlServerConnection,Microsoft.EntityFrameworkCore.Migrations.IMigrationsModelDiffer,Microsoft.EntityFrameworkCore.Migrations.IMigrationsSqlGenerator,Microsoft.EntityFrameworkCore.Migrations.IMigrationCommandExecutor,Microsoft.EntityFrameworkCore.Metadata.IModel,Microsoft.EntityFrameworkCore.Storage.IRawSqlCommandBuilder,Microsoft.EntityFrameworkCore.Storage.IExecutionStrategyFactory)">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
@@ -1612,12 +1841,6 @@
             </summary>
         </member>
         <member name="P:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseProviderServices.InvariantName">
-            <summary>
-                This API supports the Entity Framework Core infrastructure and is not intended to be used
-                directly from your code. This API may change or be removed in future releases.
-            </summary>
-        </member>
-        <member name="P:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseProviderServices.Creator">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
@@ -1749,6 +1972,24 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
+        <member name="P:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerDatabaseProviderServices.ExecutionStrategyFactory">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategyFactory">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategyFactory.#ctor(Microsoft.EntityFrameworkCore.Infrastructure.IDbContextOptions,Microsoft.EntityFrameworkCore.Internal.ICurrentDbContext,Microsoft.Extensions.Logging.ILogger{Microsoft.EntityFrameworkCore.Storage.IExecutionStrategy})">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
         <member name="T:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerMaxLengthMapping">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
@@ -1867,6 +2108,11 @@
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="T:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerTransientExceptionDetector">
+            <summary>
+                Detects the exceptions caused by SQL Server transient failures.
             </summary>
         </member>
         <member name="T:Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerTypeMapper">
@@ -2031,12 +2277,6 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
-        <member name="M:Microsoft.EntityFrameworkCore.Update.Internal.SqlServerUpdateSqlGenerator.AppendUpdateOperation(System.Text.StringBuilder,Microsoft.EntityFrameworkCore.Update.ModificationCommand,System.Int32)">
-            <summary>
-                This API supports the Entity Framework Core infrastructure and is not intended to be used
-                directly from your code. This API may change or be removed in future releases.
-            </summary>
-        </member>
         <member name="M:Microsoft.EntityFrameworkCore.Update.Internal.SqlServerUpdateSqlGenerator.AppendSelectAffectedCountCommand(System.Text.StringBuilder,System.String,System.String,System.Int32)">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
@@ -2098,6 +2338,12 @@
             </summary>
         </member>
         <member name="M:Microsoft.EntityFrameworkCore.ValueGeneration.Internal.SqlServerSequenceHiLoValueGenerator`1.GetNewLowValue">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.ValueGeneration.Internal.SqlServerSequenceHiLoValueGenerator`1.GetNewLowValueAsync(System.Threading.CancellationToken)">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
@@ -2189,25 +2435,25 @@
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.SqlServerServiceCollectionExtensions">
             <summary>
-                SQL Server specific extension methods for <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.
+                SQL Server specific extension methods for <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.
             </summary>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.SqlServerServiceCollectionExtensions.AddEntityFrameworkSqlServer(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-             <summary>
-                 <para>
-                     Adds the services required by the Microsoft SQL Server database provider for Entity Framework
-                     to an <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />. You use this method when using dependency injection
-                     in your application, such as with ASP.NET. For more information on setting up dependency
-                     injection, see http://go.microsoft.com/fwlink/?LinkId=526890.
-                 </para>
-                 <para>
-                     You only need to use this functionality when you want Entity Framework to resolve the services it uses
-                     from an external dependency injection container. If you are not using an external
-                     dependency injection container, Entity Framework will take care of creating the services it requires.
-                 </para>
-             </summary>
-             <example>
-                 <code>
+            <summary>
+                <para>
+                    Adds the services required by the Microsoft SQL Server database provider for Entity Framework
+                    to an <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />. You use this method when using dependency injection
+                    in your application, such as with ASP.NET. For more information on setting up dependency
+                    injection, see http://go.microsoft.com/fwlink/?LinkId=526890.
+                </para>
+                <para>
+                    You only need to use this functionality when you want Entity Framework to resolve the services it uses
+                    from an external dependency injection container. If you are not using an external
+                    dependency injection container, Entity Framework will take care of creating the services it requires.
+                </para>
+            </summary>
+            <example>
+                <code>
                      public void ConfigureServices(IServiceCollection services)
                      {
                          var connectionString = "connection string to database";
@@ -2219,11 +2465,11 @@
                                         .UseInternalServiceProvider(serviceProvider));
                      }
                  </code>
-             </example>
-             <param name="services"> The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add services to. </param>
-             <returns>
-                 The same service collection so that multiple calls can be chained.
-             </returns>
+            </example>
+            <param name="services"> The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" /> to add services to. </param>
+            <returns>
+                The same service collection so that multiple calls can be chained.
+            </returns>
         </member>
     </members>
 </doc>

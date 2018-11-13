@@ -19,16 +19,23 @@ namespace SomeUI
             //_context.Database.EnsureCreated();
             //_context.GetService<ILoggerFactory>().AddProvider(new MyLoggerProvider());
 
-            Module4Methods.RunAll();
-
-            // InsertNewPkFkGraph();
+            UsingRelatedDataForFiltersAndMore();
+            //FilteredEagerLoadViaProjectionNope();
+            //EagerLoadManyToManyAkaChildrenGrandchildren();
+            //Module4Methods.RunAll();
+            //AddOneToOneToExistingObjectWhileTracked();
+            //ExplicitLoad();
+            //AddManyToManyWithObjects();
+            //InsertNewPkFkGraph();
             //InsertNewPkFkGraphMultipleChildren();
-            // InsertNewOneToOneGraph();
+            //InsertNewOneToOneGraph();
             //AddChildToExistingObjectWhileTracked();
             //AddOneToOneToExistingObjectWhileTracked();
             //AddBattles();
             //AddManyToManyWithFks();
+            //EagerLoadFilterChildrenNope();
             //EagerLoadWithInclude();
+            //EagerLoadManyToManyAkaChildrenGrandchildren();
             //EagerLoadManyToManyAkaChildrenGrandchildren();
             //EagerLoadFilteredManyToManyAkaChildrenGrandchildren();
             //EagerLoadWithMultipleBranches();
@@ -38,10 +45,12 @@ namespace SomeUI
             //AnonymousTypeViaProjection();
             //AnonymousTypeViaProjectionWithRelated();
             //RelatedObjectsFixUp();
+            //ExplicitLoadWithChildFilter();
             //EagerLoadViaProjectionNotQuite();
             //EagerLoadViaProjectionAndScalars();
             //FilteredEagerLoadViaProjectionNope();
             //ExplicitLoad();
+            //RelatedObjectsFixUp();
             //ExplicitLoadWithChildFilter();
             // UsingRelatedDataForFiltersAndMore();
             // DisconnectedMethods.VerifyingThatOrphanedNewChildDoesntGetSentToDatabase();
@@ -121,7 +130,7 @@ namespace SomeUI
                 Name = "Kambei Shimada",
                 Quotes = new List<Quote>
                                {
-                                 new Quote {Text = "I've come to save you"}
+                                    new Quote {Text = "I've come to save you"}
                                }
             };
             _context.Samurais.Add(samurai);
@@ -134,9 +143,9 @@ namespace SomeUI
             {
                 Name = "Kyūzō",
                 Quotes = new List<Quote> {
-          new Quote {Text = "Watch out for my sharp sword!"},
-          new Quote {Text="I told you to watch out for the sharp sword! Oh well!" }
-        }
+                    new Quote {Text = "Watch out for my sharp sword!"},
+                    new Quote {Text="I told you to watch out for the sharp sword! Oh well!" }
+                }
             };
             _context.Samurais.Add(samurai);
             _context.SaveChanges();
@@ -192,7 +201,7 @@ namespace SomeUI
             var samurai = _context.Samurais.FirstOrDefault();
             var battle = _context.Battles.FirstOrDefault();
             _context.SamuraiBattles.Add(
-             new SamuraiBattle { Samurai = samurai, Battle = battle });
+             new SamuraiBattle { SamuraiId = 2, BattleId = 2, Samurai = samurai, Battle = battle });
             _context.SaveChanges();
         }
 
@@ -249,7 +258,7 @@ namespace SomeUI
 
 
         private static void AnonymousTypeViaProjection()
-        {
+        { //Anonymous type because model is created on the fly.
             _context = new SamuraiContext();
             var quotes = _context.Quotes
               .Select(q => new { q.Id, q.Text })
@@ -269,12 +278,13 @@ namespace SomeUI
               .ToList();
         }
 
-        //private static void RelatedObjectsFixUp()
-        //{
-        //    _context = new SamuraiContext();
-        //    var samurai = _context.Samurais.Find(1);
-        //    var quotes = _context.Quotes.Where(q => q.SamuraiId == 1).ToList();
-        //}
+        private static void RelatedObjectsFixUp()
+        {
+            _context = new SamuraiContext();
+            var samurai = _context.Samurais.Find(31);
+            var quotes = _context.Quotes.Where(q => q.SamuraiId == 31).ToList();
+            var quotes2 = _context.Quotes.Where(q => q.SamuraiId == 32).ToList();
+        }
 
         private static void EagerLoadViaProjectionNotQuite()
         {
@@ -302,7 +312,7 @@ namespace SomeUI
               {
                   Samurai = s,
                   Quotes = s.Quotes
-                          .Where(q => q.Text.Contains("happy"))
+                          .Where(q => q.Text.Contains("sharp"))
                           .ToList()
               })
               .ToList();
@@ -310,35 +320,36 @@ namespace SomeUI
             //https://github.com/aspnet/EntityFramework/issues/7131
         }
 
-        //private static void ExplicitLoad()
-        //{
-        //    _context = new SamuraiContext();
-        //    var samurai = _context.Samurais.FirstOrDefault();
-        //    _context.Entry(samurai).Collection(s => s.Quotes).Load();
-        //    _context.Entry(samurai).Reference(s => s.SecretIdentity).Load();
+        private static void ExplicitLoad()
+        {
+            _context = new SamuraiContext();
+            var samurai = _context.Samurais.FirstOrDefault();
+            _context.Entry(samurai).Collection(s => s.Quotes).Load();
+            
+            _context.Entry(samurai).Reference(s => s.SecretIdentity).Load();
 
-        //}
+        }
 
-        //private static void ExplicitLoadWithChildFilter()
-        //{
-        //    _context = new SamuraiContext();
-        //    var samurai = _context.Samurais.FirstOrDefault();
+        private static void ExplicitLoadWithChildFilter()
+        {
+            _context = new SamuraiContext();
+            var samurai = _context.Samurais.FirstOrDefault();
 
-        //    // _context.Entry(samurai)
-        //    //   .Collection(s => s.Quotes.Where(q=>q.Text.Contains("happy"))).Load();
+            // _context.Entry(samurai)
+            //   .Collection(s => s.Quotes.Where(q=>q.Text.Contains("happy"))).Load();
 
-        //    _context.Entry(samurai)
-        //      .Collection(s => s.Quotes)
-        //      .Query()
-        //      .Where(q => q.Text.Contains("happy"))
-        //      .Load();
-        //}
+            _context.Entry(samurai)
+              .Collection(s => s.Quotes)
+              .Query() //Explicit loading allows you to use LINQ queries.
+              .Where(q => q.Text.Contains("happy"))
+              .Load();
+        }
 
         private static void UsingRelatedDataForFiltersAndMore()
         {
             _context = new SamuraiContext();
             var samurais = _context.Samurais
-              .Where(s => s.Quotes.Any(q => q.Text.Contains("happy")))
+              .Where(s => s.Quotes.Any(q => q.Text.Contains("sharp")))
               .ToList();
         }
 

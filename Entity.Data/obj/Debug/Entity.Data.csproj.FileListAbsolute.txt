@@ -54,3 +54,6 @@ C:\Users\Ybadmus\Documents\yusuf_official\Entity\Entity.Data\bin\Debug\Microsoft
 C:\Users\Ybadmus\Documents\yusuf_official\Entity\Entity.Data\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
 C:\Users\Ybadmus\Documents\yusuf_official\Entity\Entity.Data\bin\Debug\Microsoft.Extensions.FileProviders.Abstractions.xml
 C:\Users\Ybadmus\Documents\yusuf_official\Entity\Entity.Data\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\Ybadmus\Documents\yusuf_official\Entity\Entity.Data\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Ybadmus\Documents\yusuf_official\Entity\Entity.Data\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Ybadmus\Documents\yusuf_official\Entity\Entity.Data\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml

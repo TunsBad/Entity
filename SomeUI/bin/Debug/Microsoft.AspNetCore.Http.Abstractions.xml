@@ -4,6 +4,20 @@
         <name>Microsoft.AspNetCore.Http.Abstractions</name>
     </assembly>
     <members>
+        <member name="F:Microsoft.Extensions.Internal.TaskCache.CompletedTask">
+            <summary>
+            A <see cref="T:System.Threading.Tasks.Task"/> that's already completed successfully.
+            </summary>
+            <remarks>
+            We're caching this in a static readonly field to make it more inlinable and avoid the volatile lookup done
+            by <c>Task.CompletedTask</c>.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Extensions.Internal.TaskCache`1.DefaultCompletedTask">
+            <summary>
+            Gets a completed <see cref="T:System.Threading.Tasks.Task"/> with the value of <c>default(T)</c>.
+            </summary>
+        </member>
         <member name="T:Microsoft.AspNetCore.Http.CookieSecurePolicy">
             <summary>
             Determines how cookie security properties are set.
@@ -540,8 +554,8 @@
         </member>
         <member name="M:Microsoft.AspNetCore.Http.PathString.StartsWithSegments(Microsoft.AspNetCore.Http.PathString,Microsoft.AspNetCore.Http.PathString@)">
             <summary>
-            Determines whether the beginning of this PathString instance matches the specified <see cref="T:Microsoft.AspNetCore.Http.PathString"/> when compared
-            using the specified comparison option and returns the remaining segments.
+            Determines whether the beginning of this <see cref="T:Microsoft.AspNetCore.Http.PathString"/> instance matches the specified <see cref="T:Microsoft.AspNetCore.Http.PathString"/> and returns
+            the remaining segments.
             </summary>
             <param name="other">The <see cref="T:Microsoft.AspNetCore.Http.PathString"/> to compare.</param>
             <param name="remaining">The remaining segments after the match.</param>
@@ -549,11 +563,32 @@
         </member>
         <member name="M:Microsoft.AspNetCore.Http.PathString.StartsWithSegments(Microsoft.AspNetCore.Http.PathString,System.StringComparison,Microsoft.AspNetCore.Http.PathString@)">
             <summary>
-            Determines whether the beginning of this <see cref="T:Microsoft.AspNetCore.Http.PathString"/> instance matches the specified <see cref="T:Microsoft.AspNetCore.Http.PathString"/> and returns
-            the remaining segments.
+            Determines whether the beginning of this <see cref="T:Microsoft.AspNetCore.Http.PathString"/> instance matches the specified <see cref="T:Microsoft.AspNetCore.Http.PathString"/> when compared
+            using the specified comparison option and returns the remaining segments.
             </summary>
             <param name="other">The <see cref="T:Microsoft.AspNetCore.Http.PathString"/> to compare.</param>
             <param name="comparisonType">One of the enumeration values that determines how this <see cref="T:Microsoft.AspNetCore.Http.PathString"/> and value are compared.</param>
+            <param name="remaining">The remaining segments after the match.</param>
+            <returns>true if value matches the beginning of this string; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.PathString.StartsWithSegments(Microsoft.AspNetCore.Http.PathString,Microsoft.AspNetCore.Http.PathString@,Microsoft.AspNetCore.Http.PathString@)">
+            <summary>
+            Determines whether the beginning of this <see cref="T:Microsoft.AspNetCore.Http.PathString"/> instance matches the specified <see cref="T:Microsoft.AspNetCore.Http.PathString"/> and returns
+            the matched and remaining segments.
+            </summary>
+            <param name="other">The <see cref="T:Microsoft.AspNetCore.Http.PathString"/> to compare.</param>
+            <param name="matched">The matched segments with the original casing in the source value.</param>
+            <param name="remaining">The remaining segments after the match.</param>
+            <returns>true if value matches the beginning of this string; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.PathString.StartsWithSegments(Microsoft.AspNetCore.Http.PathString,System.StringComparison,Microsoft.AspNetCore.Http.PathString@,Microsoft.AspNetCore.Http.PathString@)">
+            <summary>
+            Determines whether the beginning of this <see cref="T:Microsoft.AspNetCore.Http.PathString"/> instance matches the specified <see cref="T:Microsoft.AspNetCore.Http.PathString"/> when compared
+            using the specified comparison option and returns the matched and remaining segments.
+            </summary>
+            <param name="other">The <see cref="T:Microsoft.AspNetCore.Http.PathString"/> to compare.</param>
+            <param name="comparisonType">One of the enumeration values that determines how this <see cref="T:Microsoft.AspNetCore.Http.PathString"/> and value are compared.</param>
+            <param name="matched">The matched segments with the original casing in the source value.</param>
             <param name="remaining">The remaining segments after the match.</param>
             <returns>true if value matches the beginning of this string; otherwise, false.</returns>
         </member>
@@ -1155,6 +1190,25 @@
             The branch taken for a positive match.
             </summary>
         </member>
+        <member name="T:Microsoft.AspNetCore.Builder.Extensions.UsePathBaseMiddleware">
+            <summary>
+            Represents a middleware that extracts the specified path base from request path and postpend it to the request path base.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.Extensions.UsePathBaseMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.AspNetCore.Http.PathString)">
+            <summary>
+            Creates a new instace of <see cref="T:Microsoft.AspNetCore.Builder.Extensions.UsePathBaseMiddleware"/>.
+            </summary>
+            <param name="next">The delegate representing the next middleware in the request pipeline.</param>
+            <param name="pathBase">The path base to extract.</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.Extensions.UsePathBaseMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Executes the middleware.
+            </summary>
+            <param name="context">The <see cref="T:Microsoft.AspNetCore.Http.HttpContext"/> for the current request.</param>
+            <returns>A task that represents the execution of this middleware.</returns>
+        </member>
         <member name="T:Microsoft.AspNetCore.Builder.MapWhenExtensions">
             <summary>
             Extension methods for the <see cref="T:Microsoft.AspNetCore.Builder.Extensions.MapWhenMiddleware"/>.
@@ -1216,6 +1270,33 @@
             <param name="middleware">The middleware type.</param>
             <param name="args">The arguments to pass to the middleware type instance's constructor.</param>
             <returns>The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> instance.</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.UsePathBaseExtensions">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Http.PathString)">
+            <summary>
+            Adds a middleware that extracts the specified path base from request path and postpend it to the request path base.
+            </summary>
+            <param name="app">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> instance.</param>
+            <param name="pathBase">The path base to extract.</param>
+            <returns>The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> instance.</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.UseWhenExtensions">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Func{Microsoft.AspNetCore.Http.HttpContext,System.Boolean},System.Action{Microsoft.AspNetCore.Builder.IApplicationBuilder})">
+            <summary>
+            Conditionally creates a branch in the request pipeline that is rejoined to the main pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="predicate">Invoked with the request environment to determine if the branch should be taken</param>
+            <param name="configuration">Configures a branch to take</param>
+            <returns></returns>
         </member>
     </members>
 </doc>

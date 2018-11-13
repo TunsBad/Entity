@@ -20,14 +20,14 @@ namespace SomeUI
 
         public static void RunAll()
         {
-
-            //InsertSamurai();
-            //InsertMultipleSamurais();
+            AddSomeMoreSamurais();
+            InsertSamurai();
+            InsertMultipleSamurais();
             //SimpleSamuraiQuery();
             //MoreQueries();
-            //RetrieveAndUpdateSamurai();
-            //RetrieveAndUpdateMultipleSamurais();
-            //MultipleOperations();
+            RetrieveAndUpdateSamurai();
+            RetrieveAndUpdateMultipleSamurais();
+            MultipleOperations();
             //QueryAndUpdateSamuraiDisconnected();
             //QueryAndUpdateDisconnectedBattle();
             //RawSqlQuery();
@@ -36,7 +36,7 @@ namespace SomeUI
             //AddSomeMoreSamurais();
             //DeleteWhileTracked();
             //DeleteWhileNotTracked();
-            DeleteMany();
+            //DeleteMany();
 
             Console.ReadLine();
         }
@@ -180,7 +180,7 @@ namespace SomeUI
 
         private static void RetrieveAndUpdateSamurai()
         {
-            var samurai = _context.Samurais.FirstOrDefault();
+            var samurai = _context.Samurais.Find(31);
             samurai.Name += "San";
             //Entity framework was tracking already.
             _context.SaveChanges();

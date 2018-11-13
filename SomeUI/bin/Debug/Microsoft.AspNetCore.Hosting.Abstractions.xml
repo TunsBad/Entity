@@ -76,7 +76,7 @@
         </member>
         <member name="M:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.Start(Microsoft.AspNetCore.Hosting.IWebHostBuilder,System.String[])">
             <summary>
-            Start the web host and listen on the speficied urls.
+            Start the web host and listen on the specified urls.
             </summary>
             <param name="hostBuilder">The <see cref="T:Microsoft.AspNetCore.Hosting.IWebHostBuilder"/> to start.</param>
             <param name="urls">The urls the hosted application will listen on.</param>

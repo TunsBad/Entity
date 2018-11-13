@@ -238,6 +238,18 @@
                 directly from your code. This API may change or be removed in future releases.
             </summary>
         </member>
+        <member name="T:Microsoft.EntityFrameworkCore.Scaffolding.Internal.IInternalDatabaseModelFactory">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Scaffolding.Internal.IInternalDatabaseModelFactory.Create(System.Data.Common.DbConnection,Microsoft.EntityFrameworkCore.Scaffolding.TableSelectionSet)">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
         <member name="T:Microsoft.EntityFrameworkCore.Scaffolding.Metadata.Internal.ScaffoldingAnnotationNames">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
@@ -323,6 +335,12 @@
             </summary>
         </member>
         <member name="F:Microsoft.EntityFrameworkCore.Scaffolding.Metadata.Internal.ScaffoldingFullAnnotationNames.EntityTypeErrors">
+            <summary>
+                This API supports the Entity Framework Core infrastructure and is not intended to be used
+                directly from your code. This API may change or be removed in future releases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.EntityFrameworkCore.Internal.RelationalDesignLoggerExtensions.LogDebug(Microsoft.Extensions.Logging.ILogger,Microsoft.EntityFrameworkCore.Infrastructure.RelationalDesignEventId,System.Func{System.String})">
             <summary>
                 This API supports the Entity Framework Core infrastructure and is not intended to be used
                 directly from your code. This API may change or be removed in future releases.
